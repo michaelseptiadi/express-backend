@@ -6,6 +6,18 @@ export const getAllUsers = (req: Request, res: Response) => {
     res.json(users)
 }
 
+export const getUsersById = (req: Request, res: Response) => {
+    const id = parseInt(req.params.id)
+    if(isNaN(id)){
+        res.status(400).json({ message: 'Invalid ID Format' })
+    }
+    const users = userService.getUsersById(id)
+    if(!users){
+        res.status(400).json({ message: 'User not found' })
+    }
+    res.json(users)
+}
+
 export const createUser = (req: Request, res: Response) => {
     const { name } = req.body
     if (!name) {

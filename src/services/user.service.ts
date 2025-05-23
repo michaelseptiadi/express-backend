@@ -12,6 +12,10 @@ export const getUsers = (): User[] => {
   return users
 }
 
+export const getUsersById = (id: number): User | undefined => {
+  return users.find(user => user.id == id)
+}
+
 export const createUser = (name: string): User => {
   const newUser = { id: users.length + 1, name }
   users.push(newUser)
